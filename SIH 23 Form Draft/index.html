@@ -3,13 +3,29 @@
 <head>
     <title>Social Media Account Verification</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
-
 </head>
 <body>
     <div class="container">
         <h1>Social Media Account Verification</h1>
-        <form>
-            <label for="username">Username:</label>
+        <div id="modeBar">
+            <div class="modeButton selected" onclick="setMode(1)">Mode 1</div>
+            <div class="modeButton" onclick="setMode(2)">Mode 2</div>
+        </div>
+
+        <div id="mode1">
+            <h2>Mode 1: Enter Social Media Profile Link</h2>
+            <form id="mode1-form">
+                <label for="profileLink">Profile Link:</label>
+                <input type="text" id="profileLink" name="profileLink" required>
+                <br>
+                <button type="submit">Verify Account</button>
+            </form>
+        </div>
+        
+        <div id="mode2" style="display: none;">
+            <h2>Mode 2: Manually Enter Details</h2>
+            <form id="mode2-form">
+                <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
             <label for="platform">Social Media Platform:</label>
@@ -43,6 +59,27 @@
             <br>
             <button type="submit">Verify Account</button>
         </form>
+        </div>
     </div>
+
+    <script>
+        function setMode(mode) {
+            var mode1 = document.getElementById("mode1");
+            var mode2 = document.getElementById("mode2");
+            var modeButtons = document.querySelectorAll(".modeButton");
+
+            if (mode === 1) {
+                mode1.style.display = "block";
+                mode2.style.display = "none";
+                modeButtons[0].classList.add("selected");
+                modeButtons[1].classList.remove("selected");
+            } else {
+                mode1.style.display = "none";
+                mode2.style.display = "block";
+                modeButtons[0].classList.remove("selected");
+                modeButtons[1].classList.add("selected");
+            }
+        }
+    </script>
 </body>
 </html>
